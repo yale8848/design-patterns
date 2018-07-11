@@ -1,4 +1,4 @@
-package factory
+package factory_method
 
 import "fmt"
 
@@ -25,7 +25,6 @@ type Circle struct {
 func (rect*Circle)Draw()  {
 	fmt.Println("Inside Circle::draw() method.")
 }
-
 type ShapeFactory interface {
 	createShape() Shape
 }

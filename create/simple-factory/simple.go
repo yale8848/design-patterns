@@ -49,7 +49,6 @@ func (sf*ShapeFactory) GetShape(shapeType ShapeType)Shape  {
 		return &Circle{}
 	}
 	}
-
 	return nil
 }
 
