@@ -43,6 +43,31 @@ type Factory interface {
 	CreateComputer()Computer
 }
 
+type EasyFactory struct {
+
+	phone interface{}
+	computer interface{}
+
+}
+
+func (xm*EasyFactory) Create(phone interface{},computer interface{}) {
+
+	xm.phone = phone
+	xm.computer = computer
+}
+
+func (xm*EasyFactory) CreatePhone()Phone {
+
+	eaf:=&EasyFactory{}
+	eaf.Create(XiaoMiPhone{},XiaoMiComputer{})
+	return &XiaoMiPhone{}
+}
+func (xm*EasyFactory) CreateComputer()Computer {
+
+	return &XiaoMiComputer{}
+}
+
+
 type XiaoMiFactory struct {
 
 }

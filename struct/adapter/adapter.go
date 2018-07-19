@@ -2,33 +2,62 @@ package adapter
 
 import "fmt"
 
-type V220 interface {
-	Connect()
+type Usb interface {
+	ConnectUsb()
+}
+type PS2 interface {
+	ConnectPS2()
+}
+type Usber struct {
 }
 
-type V220Impl struct {
+func (u *Usber) ConnectUsb() {
+	fmt.Println("ConnectUsb")
+}
+
+//类的装饰是要
+type AdapterClass struct {
+	Usber
+}
+
+func (a *AdapterClass) ConnectPS2() {
+	fmt.Println("ConnectPS2")
+	a.Usber.ConnectUsb()
+}
+
+type AdapterObj struct {
+	Usber Usb
+}
+
+func (a *AdapterObj) ConnectPS2() {
+	fmt.Println("ConnectPS2")
+	a.Usber.ConnectUsb()
+}
+
+type A interface {
+	a()
+	b()
+	c()
+}
+
+type AdapterInterface struct {
+}
+
+func (A *AdapterInterface) a() {
+	fmt.Println("a")
+}
+func (A *AdapterInterface) b() {
+
+}
+func (A *AdapterInterface) c() {
 
 }
 
-func (v*V220Impl)Connect()  {
-
-	fmt.Println("220v")
-
+type B struct {
+	AdapterInterface
 }
 
+func (b *B) a() {
+	fmt.Println("b>a")
 
-type Adapter struct {
-
-	}
-func (v*Adapter)Connect()  {
-	fmt.Println("110v")
-}
-
-type Cooker struct {
-
-}
-
-func (c*Cooker)Cook(v* Adapter)  {
-
-	v.Connect()
 }
