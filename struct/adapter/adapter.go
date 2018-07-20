@@ -15,7 +15,7 @@ func (u *Usber) ConnectUsb() {
 	fmt.Println("ConnectUsb")
 }
 
-//类的装饰是要
+//类的适配，继承已有的类，实现要用的接口
 type AdapterClass struct {
 	Usber
 }
@@ -29,6 +29,7 @@ type AdapterObj struct {
 	Usber Usb
 }
 
+//对象适配，set已有的对象，实现要用的接口
 func (a *AdapterObj) ConnectPS2() {
 	fmt.Println("ConnectPS2")
 	a.Usber.ConnectUsb()
@@ -40,6 +41,7 @@ type A interface {
 	c()
 }
 
+//接口适配，先实现已有的接口，继承并并覆盖需要的方法
 type AdapterInterface struct {
 }
 
